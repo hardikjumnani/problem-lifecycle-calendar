@@ -14,8 +14,13 @@ function App() {
 
   return (
     <>
-      <Button label="Add Problem" onClick={handleClick} />
-      <Calendar />
+      <div class="add-problem-container">
+        <Button label="Add Problem" onClick={handleClick} />
+      </div>
+
+      <div class="calendar-container">
+        <Calendar />
+      </div>
     </>
   )
 }

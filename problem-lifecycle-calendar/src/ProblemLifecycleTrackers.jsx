@@ -6,6 +6,14 @@ import Button from './components/Button.jsx';
 import Input from './components/Input';
 import Textarea from './components/Textarea.jsx';
 import Label from './components/Label.jsx';
+import priority from './assets/priority.png';
+import followUp from './assets/followUp.png';
+import councilDiscussion from './assets/councilDiscussion.png';
+import managementDiscussion from './assets/managementDiscussion.png';
+import studentsAffected from './assets/studentsAffected.png';
+import potentialSolutions from './assets/potentialSolutions.png';
+import solved from './assets/solved.png';
+import unsolved from './assets/unsolved.png';
 
 function ProblemLifecycleTracker() {
   const [problems, setProblems] = useState([]);
@@ -191,14 +199,14 @@ function ProblemLifecycleTracker() {
           <Card key={index}>
             <CardContent>
               <h3 style={{ marginTop: 0, marginBottom: '8px' }}>{problem.name}</h3>
-              <p><strong>Priority:</strong> {problem.priority}</p>
-              <p><strong>Description:</strong> {problem.description}</p>
-              <p><strong>Council Discussion:</strong> {problem.councilDiscussed ? `Yes (${problem.councilDate})` : 'No'}</p>
-              <p><strong>Potential Solutions:</strong> {problem.potentialSolutions}</p>
-              <p><strong>Students Affected:</strong> {problem.affectedStudents}</p>
-              <p><strong>Management Discussion:</strong> {problem.managementDiscussed ? `Yes (${problem.managementDate})` : 'No'}</p>
-              <p><strong>Follow-Ups:</strong> {problem.followUps.filter(f => f).length > 0 ? problem.followUps.join(', ') : 'None'}</p>
-              <p><strong>Status:</strong> {problem.solved.charAt(0).toUpperCase() + problem.solved.slice(1)}</p>
+              <p><strong><img src={priority} alt='Priority:' style={{width:'15px'}}/></strong> {problem.priority}</p>
+              <p>{problem.description}</p>
+              <p><strong><img src={councilDiscussion} alt='Council Discussion:' style={{width:'15px'}}/></strong> {problem.councilDiscussed ? `Yes (${problem.councilDate})` : 'No'}</p>
+              <p><strong><img src={potentialSolutions} alt='Potential Solutions:' style={{width:'15px'}}/></strong> {problem.potentialSolutions}</p>
+              <p><strong><img src={studentsAffected} alt='Students Affected:' style={{width:'15px'}}/></strong> {problem.affectedStudents}</p>
+              <p><strong><img src={managementDiscussion} alt='Discussed with Management:' style={{width:'15px'}}/></strong> {problem.managementDiscussed ? `Yes (${problem.managementDate})` : 'No'}</p>
+              <p><strong><img src={followUp} alt='Follow-Ups:' style={{width:'15px'}}/></strong> {problem.followUps.filter(f => f).length > 0 ? problem.followUps.join(', ') : 'None'}</p>
+              <p><strong><img src={solved} alt='Status:' style={{width:'15px'}}/></strong> {problem.solved.charAt(0).toUpperCase() + problem.solved.slice(1)}</p>
             </CardContent>
           </Card>
         ))}

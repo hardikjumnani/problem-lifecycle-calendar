@@ -199,14 +199,15 @@ function ProblemLifecycleTracker() {
           <Card key={index}>
             <CardContent>
               <h3 style={{ marginTop: 0, marginBottom: '8px' }}>{problem.name}</h3>
-              <p><strong><img src={priority} alt='Priority:' style={{width:'15px'}}/></strong> {problem.priority}</p>
               <p>{problem.description}</p>
-              <p><strong><img src={councilDiscussion} alt='Council Discussion:' style={{width:'15px'}}/></strong> {problem.councilDiscussed ? `Yes (${problem.councilDate})` : 'No'}</p>
-              <p><strong><img src={potentialSolutions} alt='Potential Solutions:' style={{width:'15px'}}/></strong> {problem.potentialSolutions}</p>
-              <p><strong><img src={studentsAffected} alt='Students Affected:' style={{width:'15px'}}/></strong> {problem.affectedStudents}</p>
-              <p><strong><img src={managementDiscussion} alt='Discussed with Management:' style={{width:'15px'}}/></strong> {problem.managementDiscussed ? `Yes (${problem.managementDate})` : 'No'}</p>
-              <p><strong><img src={followUp} alt='Follow-Ups:' style={{width:'15px'}}/></strong> {problem.followUps.filter(f => f).length > 0 ? problem.followUps.join(', ') : 'None'}</p>
-              <p><strong><img src={solved} alt='Status:' style={{width:'15px'}}/></strong> {problem.solved.charAt(0).toUpperCase() + problem.solved.slice(1)}</p>
+              <br></br>
+              <p><strong><img src={priority} alt='Priority:' title='Priority' style={{width:'15px'}}/></strong> {problem.priority}</p>
+              <p><strong><img src={councilDiscussion} alt='Council Discussion:' title='Council Discussion' style={{width:'15px'}}/></strong> {problem.councilDiscussed ? `Yes (${problem.councilDate})` : 'No'}</p>
+              <p style={{ whiteSpace: 'pre-line' }}><strong><img src={potentialSolutions} alt='Potential Solutions:' title='Potential Solutions' style={{width:'15px'}}/></strong> {problem.potentialSolutions}</p>
+              <p><strong><img src={studentsAffected} alt='Students Affected:' title='Students Affected' style={{width:'15px'}}/></strong> {problem.affectedStudents}</p>
+              <p><strong><img src={managementDiscussion} alt='Discussed with Management:' title='Discussed with Management' style={{width:'15px'}}/></strong> {problem.managementDiscussed ? `Yes (${problem.managementDate})` : 'No'}</p>
+              <p><strong><img src={followUp} alt='Follow-Ups:' title='Follow-Ups' style={{width:'15px'}}/></strong> {problem.followUps.filter(f => f).length > 0 ? problem.followUps.join(', ') : 'None'}</p>
+              <p><strong><img src={solved} alt='Status:' title='Status' style={{width:'15px'}}/></strong> {problem.solved.charAt(0).toUpperCase() + problem.solved.slice(1)}</p>
             </CardContent>
           </Card>
         ))}

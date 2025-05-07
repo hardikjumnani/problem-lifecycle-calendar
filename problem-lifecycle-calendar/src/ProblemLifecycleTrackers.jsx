@@ -2,17 +2,14 @@ import React, { useState } from 'react';
 import './App.css';
 import Card from './components/Card.jsx';
 import CardContent from './components/CardContent';
-import Button from './components/Button.jsx';
-import Input from './components/Input';
-import Textarea from './components/Textarea.jsx';
 import Label from './components/Label.jsx';
-import priority from './assets/priority.png';
-import followUp from './assets/followUp.png';
-import councilDiscussion from './assets/councilDiscussion.png';
-import managementDiscussion from './assets/managementDiscussion.png';
-import studentsAffected from './assets/studentsAffected.png';
-import potentialSolutions from './assets/potentialSolutions.png';
-import solved from './assets/solved.png';
+import priorityImg from './assets/priority.png';
+import followUpImg from './assets/followUp.png';
+import councilDiscussionImg from './assets/councilDiscussion.png';
+import managementDiscussionImg from './assets/managementDiscussion.png';
+import studentsAffectedImg from './assets/studentsAffected.png';
+import potentialSolutionsImg from './assets/potentialSolutions.png';
+import solvedImg from './assets/solved.png';
 
 function ProblemLifecycleTracker() {
   const [problems, setProblems] = useState([]);
@@ -88,7 +85,6 @@ function ProblemLifecycleTracker() {
       <div className="title">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h1>Council Managed Problems</h1>
-          <Button onClick={() => setShowForm(true)}>Add Problem</Button>
         </div>
 
         <div style={{ display: 'flex', gap: '1rem', margin: '1rem 0' }}>
@@ -110,89 +106,6 @@ function ProblemLifecycleTracker() {
             </select>
           </div>
         </div>
-
-        {showForm && (
-          <div className="card">
-            <h2>Add New Problem</h2>
-
-            <div>
-              <Label>Problem Name</Label>
-              <Input name="name" value={form.name} onChange={handleChange} />
-            </div>
-
-            <div>
-              <Label>Description</Label>
-              <Textarea name="description" value={form.description} onChange={handleChange} />
-            </div>
-
-            <div>
-              <Label>
-                <input type="checkbox" name="councilDiscussed" checked={form.councilDiscussed} onChange={handleChange} />
-                Discussed with Council
-              </Label>
-              {form.councilDiscussed && (
-                <Input name="councilDate" type="date" value={form.councilDate} onChange={handleChange} />
-              )}
-            </div>
-
-            <div>
-              <Label>Potential Solutions</Label>
-              <Textarea name="potentialSolutions" value={form.potentialSolutions} onChange={handleChange} />
-            </div>
-
-            <div>
-              <Label>No. of Students Affected</Label>
-              <Input name="affectedStudents" type="number" value={form.affectedStudents} onChange={handleChange} />
-            </div>
-
-            <div>
-              <Label>Priority Level</Label>
-              <select name="priority" value={form.priority} onChange={handleChange}>
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
-              </select>
-            </div>
-
-            <div>
-              <Label>
-                <input type="checkbox" name="managementDiscussed" checked={form.managementDiscussed} onChange={handleChange} />
-                Discussed with Management
-              </Label>
-              {form.managementDiscussed && (
-                <Input name="managementDate" type="date" value={form.managementDate} onChange={handleChange} />
-              )}
-            </div>
-
-            <div>
-              <Label>Follow-Ups (Dates)</Label>
-              {form.followUps.map((date, index) => (
-                <div key={index}>
-                  <Input
-                    type="date"
-                    value={date}
-                    onChange={(e) => handleFollowUpChange(index, e.target.value)}
-                  />
-                </div>
-              ))}
-              <Button onClick={addFollowUpField}>Add Follow-Up</Button>
-            </div>
-
-            <div>
-              <Label>Problem Status</Label>
-              <Label>
-                <input type="radio" name="solved" value="solved" checked={form.solved === 'solved'} onChange={handleChange} />
-                Solved
-              </Label>
-              <Label>
-                <input type="radio" name="solved" value="unsolved" checked={form.solved === 'unsolved'} onChange={handleChange} />
-                Unsolved
-              </Label>
-            </div>
-
-            <Button onClick={addProblem}>Add Problem</Button>
-          </div>
-        )}
       </div>
     
       <div className="container">
@@ -203,13 +116,13 @@ function ProblemLifecycleTracker() {
                 <h3 style={{ marginTop: 0, marginBottom: '8px' }}>{problem.name}</h3>
                 <p>{problem.description}</p>
                 <br></br>
-                <p><strong><img src={priority} alt='Priority:' title='Priority' style={{width:'15px'}}/></strong> {problem.priority}</p>
-                <p><strong><img src={councilDiscussion} alt='Council Discussion:' title='Council Discussion' style={{width:'15px'}}/></strong> {problem.councilDiscussed ? `Yes (${problem.councilDate})` : 'No'}</p>
-                <p style={{ whiteSpace: 'pre-line' }}><strong><img src={potentialSolutions} alt='Potential Solutions:' title='Potential Solutions' style={{width:'15px'}}/></strong> {problem.potentialSolutions}</p>
-                <p><strong><img src={studentsAffected} alt='Students Affected:' title='Students Affected' style={{width:'15px'}}/></strong> {problem.affectedStudents}</p>
-                <p><strong><img src={managementDiscussion} alt='Discussed with Management:' title='Discussed with Management' style={{width:'15px'}}/></strong> {problem.managementDiscussed ? `Yes (${problem.managementDate})` : 'No'}</p>
-                <p><strong><img src={followUp} alt='Follow-Ups:' title='Follow-Ups' style={{width:'15px'}}/></strong> {problem.followUps.filter(f => f).length > 0 ? problem.followUps.join(', ') : 'None'}</p>
-                <p><strong><img src={solved} alt='Status:' title='Status' style={{width:'15px'}}/></strong> {problem.solved.charAt(0).toUpperCase() + problem.solved.slice(1)}</p>
+                <p><strong><img src={priorityImg} alt='Priority:' title='Priority' style={{width:'15px'}}/></strong> {problem.priority}</p>
+                <p><strong><img src={councilDiscussionImg} alt='Council Discussion:' title='Council Discussion' style={{width:'15px'}}/></strong> {problem.councilDiscussed ? `Yes (${problem.councilDate})` : 'No'}</p>
+                <p style={{ whiteSpace: 'pre-line' }}><strong><img src={potentialSolutionsImg} alt='Potential Solutions:' title='Potential Solutions' style={{width:'15px'}}/></strong> {problem.potentialSolutions}</p>
+                <p><strong><img src={studentsAffectedImg} alt='Students Affected:' title='Students Affected' style={{width:'15px'}}/></strong> {problem.affectedStudents}</p>
+                <p><strong><img src={managementDiscussionImg} alt='Discussed with Management:' title='Discussed with Management' style={{width:'15px'}}/></strong> {problem.managementDiscussed ? `Yes (${problem.managementDate})` : 'No'}</p>
+                <p><strong><img src={followUpImg} alt='Follow-Ups:' title='Follow-Ups' style={{width:'15px'}}/></strong> {problem.followUps.filter(f => f).length > 0 ? problem.followUps.join(', ') : 'None'}</p>
+                <p><strong><img src={solvedImg} alt='Status:' title='Status' style={{width:'15px'}}/></strong> {problem.solved.charAt(0).toUpperCase() + problem.solved.slice(1)}</p>
               </CardContent>
             </Card>
           ))}

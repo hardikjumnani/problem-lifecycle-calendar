@@ -1,12 +1,9 @@
-import React from 'react';
-import './Button.css'; // Optional CSS
+import React, { useState } from 'react';
 
-function Button({ label, onClick, type = 'button', className = '' }) {
+export default function Button({ children, onClick }) {
   return (
-    <button type={type} onClick={onClick} className={`custom-button ${className}`}>
-      {label}
+    <button onClick={onClick} className="button">
+      {children}
     </button>
   );
 }
-
-export default Button;

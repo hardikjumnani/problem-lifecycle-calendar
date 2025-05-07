@@ -5,9 +5,13 @@ body {
   padding: 20px;
 }
 
-.container {
-  max-width: 800px;
+.title {
+  max-width: 1000px;
   margin: auto;
+}
+
+.container {
+  margin: 5%;
 }
 
 .card {

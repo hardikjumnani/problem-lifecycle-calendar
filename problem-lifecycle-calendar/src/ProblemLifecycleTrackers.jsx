@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Card from './components/Card.jsx';
 import CardContent from './components/CardContent';
@@ -12,6 +12,21 @@ import potentialSolutionsImg from './assets/potentialSolutions.png';
 import solvedImg from './assets/solved.png';
 
 function ProblemLifecycleTracker() {
+
+  const getData = async () => {
+    try {
+      const res = await fetch(import.meta.env.DATABASE_CONNECTION_URL);
+      const data = await res.json();
+      setProblems(data)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getData();
+  }, [])
+
   const [problems, setProblems] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [filterPriority, setFilterPriority] = useState('');
@@ -114,15 +129,15 @@ function ProblemLifecycleTracker() {
             <Card key={index}>
               <CardContent>
                 <h3 style={{ marginTop: 0, marginBottom: '8px' }}>{problem.name}</h3>
-                <p>{problem.description}</p>
+                <p>{problem["Description"]}</p>
                 <br></br>
-                <p><strong><img src={priorityImg} alt='Priority:' title='Priority' style={{width:'15px'}}/></strong> {problem.priority}</p>
-                <p><strong><img src={councilDiscussionImg} alt='Council Discussion:' title='Council Discussion' style={{width:'15px'}}/></strong> {problem.councilDiscussed ? `Yes (${problem.councilDate})` : 'No'}</p>
-                <p style={{ whiteSpace: 'pre-line' }}><strong><img src={potentialSolutionsImg} alt='Potential Solutions:' title='Potential Solutions' style={{width:'15px'}}/></strong> {problem.potentialSolutions}</p>
-                <p><strong><img src={studentsAffectedImg} alt='Students Affected:' title='Students Affected' style={{width:'15px'}}/></strong> {problem.affectedStudents}</p>
-                <p><strong><img src={managementDiscussionImg} alt='Discussed with Management:' title='Discussed with Management' style={{width:'15px'}}/></strong> {problem.managementDiscussed ? `Yes (${problem.managementDate})` : 'No'}</p>
-                <p><strong><img src={followUpImg} alt='Follow-Ups:' title='Follow-Ups' style={{width:'15px'}}/></strong> {problem.followUps.filter(f => f).length > 0 ? problem.followUps.join(', ') : 'None'}</p>
-                <p><strong><img src={solvedImg} alt='Status:' title='Status' style={{width:'15px'}}/></strong> {problem.solved.charAt(0).toUpperCase() + problem.solved.slice(1)}</p>
+                <p><strong><img src={priorityImg} alt='Priority:' title='Priority' style={{width:'15px'}}/></strong> {problem["priority"]}</p>
+                <p><strong><img src={councilDiscussionImg} alt='Council Discussion:' title='Council Discussion' style={{width:'15px'}}/></strong> {problem["councilDiscussed"] ? `Yes (${problem["councilDate"]})` : 'No'}</p>
+                <p style={{ whiteSpace: 'pre-line' }}><strong><img src={potentialSolutionsImg} alt='Potential Solutions:' title='Potential Solutions' style={{width:'15px'}}/></strong> {problem["potentialSolutions"]}</p>
+                <p><strong><img src={studentsAffectedImg} alt='Students Affected:' title='Students Affected' style={{width:'15px'}}/></strong> {problem["affectedStudents"]}</p>
+                <p><strong><img src={managementDiscussionImg} alt='Discussed with Management:' title='Discussed with Management' style={{width:'15px'}}/></strong> {problem["managementDiscussed"] ? `Yes (${problem["managementDate"]})` : 'No'}</p>
+                <p><strong><img src={followUpImg} alt='Follow-Ups:' title='Follow-Ups' style={{width:'15px'}}/></strong> {problem["followUps"].filter(f => f).length > 0 ? problem["followUps"].join(', ') : 'None'}</p>
+                <p><strong><img src={solvedImg} alt='Status:' title='Status' style={{width:'15px'}}/></strong> {problem["solved"].charAt(0).toUpperCase() + problem["solved"].slice(1)}</p>
               </CardContent>
             </Card>
           ))}

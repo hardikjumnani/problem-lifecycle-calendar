@@ -10,12 +10,12 @@ import managementDiscussionImg from './assets/managementDiscussion.png';
 import studentsAffectedImg from './assets/studentsAffected.png';
 import potentialSolutionsImg from './assets/potentialSolutions.png';
 import solvedImg from './assets/solved.png';
-
+const VITE_DATABASE_CONNECTION_URL = import.meta.env.VITE_DATABASE_CONNECTION_URL
 function ProblemLifecycleTracker() {
 
   const getData = async () => {
     try {
-      const res = await fetch(import.meta.env.DATABASE_CONNECTION_URL);
+      const res = await fetch(VITE_DATABASE_CONNECTION_URL);
       const data = await res.json();
       setProblems(data)
     } catch (error) {
@@ -128,16 +128,16 @@ function ProblemLifecycleTracker() {
           {filteredSortedProblems.map((problem, index) => (
             <Card key={index}>
               <CardContent>
-                <h3 style={{ marginTop: 0, marginBottom: '8px' }}>{problem.name}</h3>
+                <h3 style={{ marginTop: 0, marginBottom: '8px' }}>{problem["Name"]}</h3>
                 <p>{problem["Description"]}</p>
                 <br></br>
-                <p><strong><img src={priorityImg} alt='Priority:' title='Priority' style={{width:'15px'}}/></strong> {problem["priority"]}</p>
-                <p><strong><img src={councilDiscussionImg} alt='Council Discussion:' title='Council Discussion' style={{width:'15px'}}/></strong> {problem["councilDiscussed"] ? `Yes (${problem["councilDate"]})` : 'No'}</p>
-                <p style={{ whiteSpace: 'pre-line' }}><strong><img src={potentialSolutionsImg} alt='Potential Solutions:' title='Potential Solutions' style={{width:'15px'}}/></strong> {problem["potentialSolutions"]}</p>
-                <p><strong><img src={studentsAffectedImg} alt='Students Affected:' title='Students Affected' style={{width:'15px'}}/></strong> {problem["affectedStudents"]}</p>
-                <p><strong><img src={managementDiscussionImg} alt='Discussed with Management:' title='Discussed with Management' style={{width:'15px'}}/></strong> {problem["managementDiscussed"] ? `Yes (${problem["managementDate"]})` : 'No'}</p>
-                <p><strong><img src={followUpImg} alt='Follow-Ups:' title='Follow-Ups' style={{width:'15px'}}/></strong> {problem["followUps"].filter(f => f).length > 0 ? problem["followUps"].join(', ') : 'None'}</p>
-                <p><strong><img src={solvedImg} alt='Status:' title='Status' style={{width:'15px'}}/></strong> {problem["solved"].charAt(0).toUpperCase() + problem["solved"].slice(1)}</p>
+                <p><strong><img src={priorityImg} alt='Priority:' title='Priority' style={{width:'15px'}}/></strong> {problem["Priority"]}</p>
+                <p><strong><img src={councilDiscussionImg} alt='Council Discussion:' title='Council Discussion' style={{width:'15px'}}/></strong> {problem["Council Discussed"] ? `Yes (${problem["Council Date"]})` : 'No'}</p>
+                <p style={{ whiteSpace: 'pre-line' }}><strong><img src={potentialSolutionsImg} alt='Potential Solutions:' title='Potential Solutions' style={{width:'15px'}}/></strong> {problem["Potential Solutions"]}</p>
+                <p><strong><img src={studentsAffectedImg} alt='Students Affected:' title='Students Affected' style={{width:'15px'}}/></strong> {problem["Affected Students"]}</p>
+                <p><strong><img src={managementDiscussionImg} alt='Discussed with Management:' title='Discussed with Management' style={{width:'15px'}}/></strong> {problem["Management Discussed"] ? `Yes (${problem["Management Date"]})` : 'No'}</p>
+                <p><strong><img src={followUpImg} alt='Follow-Ups:' title='Follow-Ups' style={{width:'15px'}}/></strong> {problem["Follow Ups"]}</p>
+                <p><strong><img src={solvedImg} alt='Status:' title='Status' style={{width:'15px'}}/></strong> {problem["Solved"].charAt(0).toUpperCase() + problem["Solved"].slice(1)}</p>
               </CardContent>
             </Card>
           ))}

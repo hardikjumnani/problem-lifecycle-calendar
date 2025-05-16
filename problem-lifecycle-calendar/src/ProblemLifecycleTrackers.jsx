@@ -5,6 +5,7 @@ import CardContent from './components/CardContent';
 import Label from './components/Label.jsx';
 import priorityImg from './assets/priority.png';
 import followUpImg from './assets/followUp.png';
+import detailFollowUp from './assets/detailFollowUp.png';
 import councilDiscussionImg from './assets/councilDiscussion.png';
 import managementDiscussionImg from './assets/managementDiscussion.png';
 import studentsAffectedImg from './assets/studentsAffected.png';
@@ -43,6 +44,7 @@ function ProblemLifecycleTracker() {
     managementDiscussed: false,
     managementDate: '',
     followUps: [''],
+    detailFollowUp: '',
     solved: 'unsolved'
   });
 
@@ -77,6 +79,7 @@ function ProblemLifecycleTracker() {
       managementDiscussed: false,
       managementDate: '',
       followUps: [''],
+      latestFollowUp: '',
       solved: 'unsolved'
     });
     setShowForm(false);
@@ -137,6 +140,7 @@ function ProblemLifecycleTracker() {
                 <p><strong><img src={studentsAffectedImg} alt='Students Affected:' title='Students Affected' style={{width:'15px'}}/></strong> {problem["Affected Students"]}</p>
                 <p><strong><img src={managementDiscussionImg} alt='Discussed with Management:' title='Discussed with Management' style={{width:'15px'}}/></strong> {problem["Management Discussed"] ? `Yes (${problem["Management Date"]})` : 'No'}</p>
                 <p><strong><img src={followUpImg} alt='Follow-Ups:' title='Follow-Ups' style={{width:'15px'}}/></strong> {problem["Follow Ups"]}</p>
+                <p><strong><img src={detailFollowUp} alt='Latest Follow-Up Detail:' title='Latest Follow-Up Detail' style={{width:'15px'}}/></strong> {problem["Latest Follow Up Detail"]}</p>
                 <p><strong><img src={solvedImg} alt='Status:' title='Status' style={{width:'15px'}}/></strong> {problem["Solved"].charAt(0).toUpperCase() + problem["Solved"].slice(1)}</p>
               </CardContent>
             </Card>
